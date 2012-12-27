@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProjectTrakker</title>
+ 
+    
+    
+</head>
+<body class="index">
+
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= semantic_form_for @project do |f| %>
+    <%= f.inputs do %>
+
+       <div class="project_name" style="background-color:#FFFFFF">
+       <%= f.input :project_name %>
+       </div>
+       <table>
+       <tr>
+       <td><%= f.label :due_date %></td><!-- <span style="text-align:left; font-weight:bold; background-color:gray; color:#fff;">
+       	3. Due Date</span>&nbsp;&nbsp;&nbsp; --><!-- <td><input type="text" id="datechooser" /></td> -->
+       <td><!-- <input type="text" id="datepicker" /> -->
+       	<%= f.text_field :due_date, 'id' => 'datepicker' %></td></tr></table>
+       <div class="components">
+       <%= f.input :components %>
+       </div>
+       <div class="client_name">
+       <%= f.input :client_name %>
+       </div>
+    <% end %>
+    <%= f.actions do %>
+    <div class="action_submit">
+      <%= f.action :submit, :as => :button %>
+      </div>
+      <div class="action_cancel">
+      <%= f.action :cancel, :as => :link %>
+      </div>
+</div>      
+    <% end %>
+  <% end %>
+  
+  
+  
+
+</body>
+</html>
